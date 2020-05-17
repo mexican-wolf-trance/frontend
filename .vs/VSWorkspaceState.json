@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\AlertComponent",
+    "\\src\\components\\Header",
+    "\\src\\components\\Home",
+    "\\src\\components\\LoginForm",
+    "\\src\\components\\RegistrationForm",
+    "\\src\\constants"
+  ],
+  "SelectedNode": "\\src\\components\\LoginForm\\LoginForm.js",
+  "PreviewInSolutionExplorer": false
+}
