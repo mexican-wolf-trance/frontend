@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './LoginForm.css';
 import { API_BASE_URL, mongoUrl } from '../../constants/apiConstants';
 import { withRouter } from "react-router-dom";
+import Cookies from 'universal-cookie'
+import login from '../../Helpers/LoginHelper'
 
 
 function LoginForm(props)
@@ -28,8 +30,10 @@ function LoginForm(props)
             "email": state.email,
             "password": state.password,
         }
-        //TODO
-        //Use promises and asyn awaits to handle login stuff
+
+        const success = await login(payload)
+        if success = payload.email
+            redirectToHome()
     }
 
     const redirectToHome = () =>

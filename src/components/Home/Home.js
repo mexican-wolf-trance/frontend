@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getCovid } from '../../Helpers/CovidGetterHelper'
+import Cookies from 'universal-cookie'
 
 const Home = (props) =>
 {
