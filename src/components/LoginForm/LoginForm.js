@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
-import { API_BASE_URL, mongoUrl } from '../../constants/apiConstants';
 import { withRouter } from "react-router-dom";
-import Cookies from 'universal-cookie'
-import login from '../../Helpers/LoginHelper'
+import { login } from '../../Helpers/LoginHelper'
 
 
 function LoginForm(props)
 {
     const [state, setState] = useState({
-        email: "",
+        username: "",
         password: "",
         successMessage: null
     })
@@ -27,13 +25,24 @@ function LoginForm(props)
         e.preventDefault();
         const payload =
         {
-            "email": state.email,
+            "username": state.username,
             "password": state.password,
         }
 
-        const success = await login(payload)
-        if success = payload.email
-            redirectToHome()
+        const success = login(payload)
+        if (success)
+        {
+            setState(prevState => ({
+                ...prevState,
+                'successMessage': 'Login successful. Redirecting to home page..'
+            }))
+            redirectToHome();
+            props.showError(null)
+        }
+        else
+        {
+            props.showError("Username does not exists");
+        }
     }
 
     const redirectToHome = () =>
@@ -51,12 +60,12 @@ function LoginForm(props)
             <form>
                 <div className="form-group text-left">
                     <label /*htmlFor="exampleInputEmail1"*/>Username</label>
-                    <input type="email"
+                    <input type="text"
                         className="form-control"
-                        id="email"
+                        id="username"
                         aria-describedby="emailHelp"
                         placeholder="Enter username"
-                        value={state.email}
+                        value={state.username}
                         onChange={handleChange}
                     />
                 </div>

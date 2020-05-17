@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getCovid } from '../../Helpers/CovidGetterHelper'
-import Cookies from 'universal-cookie'
 
 const Home = (props) =>
 {
@@ -18,19 +17,22 @@ const Home = (props) =>
 
     console.log("Data", data)
 
-
-    const arr = [];
-    Object.keys(data).forEach(function (key) {
-        arr.push(data[key])
-    })
-
-    console.log("Data", arr)
-
     return (
         <div className="mt-2">
             Welcome to COVID-19. It's hell on earth!
            <div>
-                { Object.keys(data).map( key => <div> {data[key]} </div> )}
+                {data.map((data) => (
+                    <div>
+                        <div>Date: {data.date}</div>
+                        <div>Death: {data.death}</div>
+                        <div>Hospitalized: {data.hospitalized}</div>
+                        <div>Tested negative: {data.negative}</div>
+                        <div>On ventilators: {data.onVentilatorCurrently}</div>
+                        <div>Tested positive: {data.positive}</div>
+                        <div>Total tests: {data.total}</div>
+                        <div><br></br></div>
+                    </div>
+                ))}
             </div>
         </div>
     )

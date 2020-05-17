@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import "./RegistrationForm.css"
+import { register } from '../../Helpers/RegistrationHelper'
 
 function RegistrationForm(props)
 {
     const [state, setState] = useState({
-        email: "",
+        username: "",
         password: "",
         confirmPassword: "",
         successMessage: null
@@ -36,17 +37,27 @@ function RegistrationForm(props)
 
     const sendDetailsToServer = () =>
     {
-        if (state.email.length && state.password.length)
+        if (state.username.length && state.password.length)
         {
             props.showError(null);
             const payload =
             {
-                "email": state.email,
+                "username": state.username,
                 "password": state.password,
             }
             //TODO:
             //need to add custom payload for my own purposes
             //USE PROMISES OR WHATEVER
+            const success = register(payload)
+            if (success)
+            {
+                    setState(prevState => ({
+                        ...prevState,
+                        'successMessage': 'Login successful. Redirecting to home page..'
+                    }))
+                    redirectToLogin();
+                    props.showError(null)
+            }
         }
         else { props.showError('Please enter valid username and password') }
 
@@ -57,12 +68,12 @@ function RegistrationForm(props)
             <form>
                 <div className="form-group text-left">
                     <label /*htmlFor="exampleInputEmail1"*/>Username</label>
-                    <input type="email"
+                    <input type="text"
                         className="form-control"
-                        id="email"
+                        id="username"
                         aria-describedby="emailHelp"
-                        placeholder="Enter email"
-                        value={state.email}
+                        placeholder="Enter username"
+                        value={state.username}
                         onChange={handleChange}
                     />
                 </div>
