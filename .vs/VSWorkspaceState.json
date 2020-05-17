@@ -5,12 +5,12 @@
     "\\src",
     "\\src\\components",
     "\\src\\components\\AlertComponent",
+    "\\src\\components\\ComponentHelper",
     "\\src\\components\\Header",
     "\\src\\components\\Home",
-    "\\src\\components\\LoginForm",
-    "\\src\\components\\RegistrationForm",
-    "\\src\\constants"
+    "\\src\\Helpers",
+    "\\src\\Utils"
   ],
-  "SelectedNode": "\\src\\components\\LoginForm\\LoginForm.js",
+  "SelectedNode": "\\src\\Helpers\\LoginHelper.js",
   "PreviewInSolutionExplorer": false
 }
